@@ -1,4 +1,7 @@
 # 📝 Advanced To-Do App
+## 📸 Preview
+
+![App Preview](preview.png)
 
 A modern and fully featured task management web application built using HTML, CSS, and JavaScript.  
 This app helps users organize tasks efficiently with a clean UI and powerful functionality.
