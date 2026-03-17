@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(0) Tasks Pending</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <h1>📝 To-Do List</h1>
+      <button class="theme-btn" onclick="toggleTheme()">🌙 Dark / Light</button>
+    </div>
+
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="Enter task" />
+      <input type="date" id="dueDate" />
+
+      <select id="priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+
+      <select id="category">
+        <option value="Study">Study</option>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="General">General</option>
+      </select>
+
+      <button onclick="addTask()">Add</button>
+    </div>
+
+    <div class="note-section">
+      <textarea id="taskNote" placeholder="Optional note for this task..."></textarea>
+    </div>
+
+    <div class="search-section">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by task, category, priority, or note..."
+        onkeyup="renderTasks()"
+      />
+    </div>
+
+    <div class="filters">
+      <button onclick="filterTasks('all')">All</button>
+      <button onclick="filterTasks('done')">Completed (0)</button>
+      <button onclick="filterTasks('pending')">Pending (0)</button>
+      <button onclick="clearCompleted()">Clear Completed</button>
+      <button onclick="clearAll()">Clear All</button>
+      <button onclick="exportTasks()">Export</button>
+      <button onclick="document.getElementById('importFile').click()">Import</button>
+      <button onclick="undoDelete()">Undo Delete</button>
+      <button onclick="sortTasks('date')">Sort by Date</button>
+      <button onclick="sortTasks('priority')">Sort by Priority</button>
+    </div>
+
+    <input
+      type="file"
+      id="importFile"
+      accept=".json"
+      onchange="importTasks(event)"
+      hidden
+    />
+
+    <p id="taskCount">Total Tasks: 0</p>
+    <p id="taskStats">✅ Completed: 0 | ⏳ Pending: 0</p>
+
+    <div class="progress-wrapper">
+      <div id="progressText">Progress: 0%</div>
+      <div class="progress-bar">
+        <div id="progressFill"></div>
+      </div>
+    </div>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-box">
+      <h2>Edit Task</h2>
+
+      <input type="text" id="editTaskInput" placeholder="Task title" />
+      <input type="date" id="editDueDate" />
+
+      <select id="editPriority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+
+      <select id="editCategory">
+        <option value="Study">Study</option>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="General">General</option>
+      </select>
+
+      <textarea id="editTaskNote" placeholder="Edit note..."></textarea>
+
+      <div class="modal-actions">
+        <button onclick="saveEditedTask()">Save</button>
+        <button onclick="closeEditModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
